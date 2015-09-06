@@ -1,0 +1,8 @@
+﻿<div>
+    <ul style="list-style:none">
+        @foreach (var item in ViewBag.MoreTopics)
+        {
+            <li><a href="@Url.Action("Details", "Topic")/@item.Id"> @item.Title </a></li>
+        }
+    </ul>
+</div>

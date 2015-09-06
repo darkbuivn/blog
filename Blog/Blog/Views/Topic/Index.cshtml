@@ -1,0 +1,93 @@
+﻿@using Blog.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Topic>
+@{
+    ViewBag.Title = "Topic";
+}
+<div>
+<table cellspacing="0" border="0" style="border-collapse:collapse">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="articlebox">
+                        <div class="row">
+                            <div class="articletitle">
+                                <h2 class="articlehead">
+                                    <a href="@Url.Action("Details", "Topic")/@item.Id">@item.Title</a>
+                                </h2>
+
+                                <b>Created at: </b> @item.CreatedDate 
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="articlestats">
+                                <div class="stats1">
+                                    <b> Category </b> <a href="#">@item.Category.Name</a>
+                                    <b>Views: </b> 11225
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="articleabstract">                               
+                               @Html.Raw(item.ShortDesc)
+                            </div>
+                            <div class="fb-share-button" data-href="http://localhost:55314/Topic/@item.Id"
+                                 data-layout="button">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <a class="readmore" href="@Url.Action("Details", "Topic")/@item.Id">Read More ...</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+   
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+   
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+   
+
+</div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1473287649643457',
+            xfbml: true,
+            version: 'v2.4'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+   <!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1473287649643457";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your share button code -->
+
+
+

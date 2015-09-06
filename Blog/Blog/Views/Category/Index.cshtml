@@ -1,0 +1,50 @@
+﻿@using Blog.Models
+@model List<Blog.Models.Category>
+@{
+    ViewBag.Title = "Category Management";
+}
+<div>
+    <p>
+        <h2>Danh mục bài viết</h2>
+    </p>
+    <div class="form-inline">
+        <form action="@Url.Action("Create", "Category")" method="post">
+            <div class="form-group">
+                <input type="text" id="categoryname" class="form-control" name="categoryname" placeholder="Tên danh mục" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <br />
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table id="tblCategory" class="table table-hover">
+                <tr class="active">
+                    <th width="60%">Danh mục</th>
+                    <th width="40%"></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <small> <span class="glyphicon glyphicon-chevron-right"></span></small>&nbsp;<span>@item.Name</span>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Product", "Category")/@item.Id">
+                                <span class="btn-sm btn-info">Chi tiết</span>
+                            </a>
+                            <a href="@Url.Action("ChangeName", "Category")/@item.Id">
+                                <span class="btn-sm btn-warning">Đổi tên</span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Category")/@item.Id">
+                                <span class="btn-sm btn-danger">Xóa</span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div><!-- /.box -->
+    </div>
+</div>

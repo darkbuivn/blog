@@ -1,0 +1,21 @@
+﻿@using Blog.Models
+@model Category
+<div>
+    <p>
+        <h2>Sửa tên danh mục</h2>
+    </p>
+    <div class="form-inline">
+        <p><span>Tên hiện tại:</span>  <span>@Model.Name</span></p>
+        @using (Html.BeginForm("ChangeName", "Category", FormMethod.Post, new { role = "form" }))
+        {
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                @Html.HiddenFor(model => model.Id)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sửa" class="btn btn-primary" />
+                <a href="@Url.Action("Index")"><span class="btn btn-warning"> Cancel </span></a>
+            </div>
+        }
+    </div>
+</div>

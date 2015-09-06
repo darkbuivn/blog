@@ -1,0 +1,80 @@
+﻿@using Blog.Models
+@model Topic
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="articlebox">
+    <div class="row">
+        <div class="articletitle">
+            <h2 class="articlehead">
+                <a href="@Url.Action("Details", "Topic")/@Model.Id">@Model.Title</a>
+            </h2>
+            <p>
+                <b>Ngày đăng: </b> @Model.CreatedDate
+                @if (User.IsInRole("Administrator"))
+                {
+                    <span class="badge btn-warning"><a href="@Url.Action("Edit", "Topic")/@Model.Id">Sửa</a></span>
+                    <span class="badge btn-danger"><a href="@Url.Action("Delete", "Topic")/@Model.Id">Xóa</a></span>
+                }
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="articlestats">
+            <div class="stats1">
+                <b> Thuộc danh mục:  </b> <a href="#">@Model.Category.Name</a>
+                @*<b>Lượt xem: </b> 11225*@ 
+                <div class="fb-share-button" data-href="~/Topic/@Model.Id"
+                     data-layout="button">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="articleabstract">
+            @Html.Raw(Model.ShortDesc)           
+     
+            @Html.Raw(Model.Content)
+        </div>       
+    </div>
+
+    <div class="row">
+        <div class="fb-share-button" data-href="http://localhost:55314/Topic/@Model.Id"
+             data-layout="button">
+        </div>
+    </div>
+</div>
+
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1473287649643457',
+            xfbml: true,
+            version: 'v2.4'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1473287649643457";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your share button code -->
