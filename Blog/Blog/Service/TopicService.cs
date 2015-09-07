@@ -41,6 +41,11 @@ namespace Blog.Service
             return _topicRepository.GetAllWithCategoryIdIncludeCategory(categoryId);
         }
 
+        public List<Topic> SearchResult(string searchstr)
+        {
+            return _topicRepository.SearchResult(searchstr);
+        }
+
         public void Create(Topic topic)
         {
             _topicRepository.Create(topic);

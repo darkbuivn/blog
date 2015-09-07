@@ -1,0 +1,64 @@
+﻿@using Blog.Models
+@model List<Block>
+
+@{
+    ViewBag.Title = "Quản lý khối";
+}
+<div>
+    <a href="@Url.Action("Create", "Block")">
+        <span class="btn btn-success">Tạo khối mới</span>
+    </a>
+</div>
+<div class="box">
+    <div class="box-body table-responsive no-padding">
+        <table id="tblBlock" class="table table-hover">
+            <tr class="active">
+                <th width="40%">Khối</th>
+                <th width="20%">Tình trạng</th>
+                <th width="40%"> </th>
+            </tr>
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <small> <span class="glyphicon glyphicon-chevron-right"></span></small>&nbsp;<span>@item.Name</span>
+                    </td>
+                    <td>
+                        @if (item.status == 0)
+                        {
+                            <span class="badge">Tạm khóa</span>
+                        }
+                        else
+                        {
+                            <span class="badge">Hoạt động</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.status == 0)
+                        {
+                            <a href="@Url.Action("Active", "Block")/@item.Id">
+                                <span class="btn-sm btn-info">Kích hoạt</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Deactive", "Block")/@item.Id">
+                                <span class="btn-sm btn-info">Ngừng</span>
+                            </a>
+                        }
+                        <a href="@Url.Action("Edit", "Block")/@item.Id">
+                            <span class="btn-sm btn-warning">Sửa</span>
+                        </a>
+                        <a href="@Url.Action("Delete", "Block")/@item.Id">
+                            <span class="btn-sm btn-danger">Xóa</span>
+                        </a>
+                    </td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+ </div><!-- /.box -->
+

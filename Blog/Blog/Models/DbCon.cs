@@ -16,5 +16,6 @@ namespace Blog.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Block> Blocks { get; set; }
     } 
 }

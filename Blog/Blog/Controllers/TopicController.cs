@@ -138,5 +138,25 @@ namespace Blog.Controllers
                 return View();
             }
         }
+
+        public ActionResult Search(string keyword, int? page)
+        {
+            keyword = HttpUtility.HtmlEncode(keyword);
+
+            if(keyword == null || keyword.Equals(""))
+            {
+                return RedirectToAction("Index");
+            }
+
+            List<Topic> result = _topicService.SearchResult(keyword);
+
+            if (result.Count == 0)
+                return RedirectToAction("Index");
+
+            ViewBag.keyword = keyword;
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(result.ToPagedList(pageNumber, pageSize));               
+        }
     }
 }

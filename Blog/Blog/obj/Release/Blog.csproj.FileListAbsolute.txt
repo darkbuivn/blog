@@ -56,3 +56,4 @@ E:\web projects\Blog\Blog\bin\Microsoft.Owin.Security.Twitter.xml
 E:\web projects\Blog\Blog\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\web projects\Blog\Blog\obj\Release\Blog.dll
 E:\web projects\Blog\Blog\obj\Release\Blog.pdb
+E:\web projects\Blog\Blog\obj\Release\Blog.csprojResolveAssemblyReference.cache

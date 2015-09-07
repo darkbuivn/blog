@@ -67,6 +67,11 @@ namespace Blog.Repository
             return dbCon.Topics.OrderByDescending(x => x.Id).FirstOrDefault();
         }
 
+        public List<Topic> SearchResult(string searchstr) 
+        {
+            return dbCon.Topics.Where(x => x.Title.Contains(searchstr) || x.ShortDesc.Contains(searchstr) || x.Content.Contains(searchstr)).ToList();
+        }
+
         public void Update(Topic topic)
         {
             Topic _topic = dbCon.Topics.SingleOrDefault(x => x.Id == topic.Id);
